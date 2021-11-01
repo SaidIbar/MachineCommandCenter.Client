@@ -15,24 +15,24 @@ namespace MachineCommandCenter.Api.Repositories
             _appDbContext = appDbContext;
         }
 
-        public IEnumerable<Machine> GetAllEmployees()
+        public IEnumerable<Machine> GetAllMachines()
         {
             return _appDbContext.Machines;
         }
 
-        public Machine GetEmployeeById(Guid machineId)
+        public Machine GetMachineById(Guid machineId)
         {
             return _appDbContext.Machines.FirstOrDefault(c => c.MachineId == machineId);
         }
 
-        public Machine AddEmployee(Machine machine)
+        public Machine AddMachine(Machine machine)
         {
             var addedEntity = _appDbContext.Machines.Add(machine);
             _appDbContext.SaveChanges();
             return addedEntity.Entity;
         }
 
-        public Machine UpdateEmployee(Machine machine)
+        public Machine UpdateMachine(Machine machine)
         {
             var foundMachine = _appDbContext.Machines.FirstOrDefault(e => e.MachineId == machine.MachineId);
 
@@ -51,7 +51,7 @@ namespace MachineCommandCenter.Api.Repositories
             return null;
         }
 
-        public void DeleteEmployee(Guid machineId)
+        public void DeleteMachine(Guid machineId)
         {
             var foundMachine = _appDbContext.Machines.FirstOrDefault(e => e.MachineId == machineId);
             if (foundMachine == null) return;
@@ -59,5 +59,8 @@ namespace MachineCommandCenter.Api.Repositories
             _appDbContext.Machines.Remove(foundMachine);
             _appDbContext.SaveChanges();
         }
+
+        
+
     }
 }
