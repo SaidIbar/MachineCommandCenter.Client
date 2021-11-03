@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineCommandCenter.Client", "MachineCommandCenter.Client\MachineCommandCenter.Client.csproj", "{A8054ADE-292C-46BC-87BB-795744090B5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCommandCenter.Client", "MachineCommandCenter.Client\MachineCommandCenter.Client.csproj", "{A8054ADE-292C-46BC-87BB-795744090B5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineCommandCenter.Shared", "MachineCommandCenter.Shared\MachineCommandCenter.Shared.csproj", "{342CE3F7-CA15-4B77-8532-D41C6AFEE74B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCommandCenter.Shared", "MachineCommandCenter.Shared\MachineCommandCenter.Shared.csproj", "{342CE3F7-CA15-4B77-8532-D41C6AFEE74B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineCommandCenter.Data", "MachineCommandCenter.Data\MachineCommandCenter.Data.csproj", "{231797C9-6526-4656-907B-BDF567CB5690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCommandCenter.Data", "MachineCommandCenter.Data\MachineCommandCenter.Data.csproj", "{231797C9-6526-4656-907B-BDF567CB5690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MashineCommandCenter.Api", "MashineCommandCenter.Api\MashineCommandCenter.Api.csproj", "{27394C36-3A14-4249-841B-2E7F0DDE688B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MashineCommandCenter.Api", "MashineCommandCenter.Api\MashineCommandCenter.Api.csproj", "{27394C36-3A14-4249-841B-2E7F0DDE688B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

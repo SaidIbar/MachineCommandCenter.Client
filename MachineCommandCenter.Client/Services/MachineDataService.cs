@@ -41,18 +41,24 @@ namespace MachineCommandCenter.Client.Services
 
         public async Task<IEnumerable<Machine>> GetAllMachines()
         {
+
             return await JsonSerializer.DeserializeAsync<IEnumerable<Machine>>
-                  (await _httpClient.GetStreamAsync($"api/machine"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                  (await _httpClient.GetStreamAsync($"api/Machine"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public Task<Machine> GetMachineDetails(Guid machineId)
+        public async Task<Machine> GetMachineDetails(Guid machineId)
         {
-            throw new NotImplementedException();
+            var machine = await JsonSerializer.DeserializeAsync<Machine>
+                 (await _httpClient.GetStreamAsync($"api/Machine/{machineId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            return machine;
         }
 
-        public Task UpdateMachine(Machine machine)
+        public async Task UpdateMachine(Machine machine)
         {
-            throw new NotImplementedException();
+            var machineJson =
+               new StringContent(JsonSerializer.Serialize(machine), Encoding.UTF8, "application/json");
+
+            await _httpClient.PutAsync("api/machine", machineJson);
         }
     }
 }

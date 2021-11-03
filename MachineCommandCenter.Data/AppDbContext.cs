@@ -27,7 +27,7 @@ namespace MachineCommandCenter.Shared.Models
                 MachineId = Guid.NewGuid(),
                 Name = "Telehandler",
                 MachineStatus = MachineStatus.Offline,
-                SentDataDateTime = new DateTime(2021 - 11 - 01)
+                SentDataDateTime = DateTime.Now
             });
 
             modelBuilder.Entity<Machine>().HasData(new Machine
@@ -35,14 +35,14 @@ namespace MachineCommandCenter.Shared.Models
                 MachineId = Guid.NewGuid(),
                 Name = "Single Man Lift",
                 MachineStatus = MachineStatus.Online,
-                SentDataDateTime = new DateTime(2021 - 11 - 01)
+                SentDataDateTime = DateTime.Now
             });
             modelBuilder.Entity<Machine>().HasData(new Machine
             {
                 MachineId = Guid.NewGuid(),
                 Name = "Wheel Tractor-Scraper",
                 MachineStatus = MachineStatus.Offline,
-                SentDataDateTime = new DateTime(2021 - 11 - 01)
+                SentDataDateTime = DateTime.Now
             });
 
             modelBuilder.Entity<Machine>().HasData(new Machine
@@ -50,14 +50,14 @@ namespace MachineCommandCenter.Shared.Models
                 MachineId = Guid.NewGuid(),
                 Name = "Skid Steer Loader",
                 MachineStatus = MachineStatus.Online,
-                SentDataDateTime = new DateTime(2021 - 11 - 01)
+                SentDataDateTime = DateTime.Now
             });
             modelBuilder.Entity<Machine>().HasData(new Machine
             {
                 MachineId = Guid.NewGuid(),
                 Name = "Scissor Lift",
                 MachineStatus = MachineStatus.Online,
-                SentDataDateTime = new DateTime(2021 - 11 - 01)
+                SentDataDateTime = DateTime.Now
             });
 
             modelBuilder.Entity<Machine>().HasData(new Machine
@@ -65,14 +65,14 @@ namespace MachineCommandCenter.Shared.Models
                 MachineId = Guid.NewGuid(),
                 Name = "Forklift",
                 MachineStatus = MachineStatus.Offline,
-                SentDataDateTime = new DateTime(2021 - 10 - 30)
+                SentDataDateTime = DateTime.Now
             });
             modelBuilder.Entity<Machine>().HasData(new Machine
             {
                 MachineId = Guid.NewGuid(),
                 Name = "Bulldozer",
                 MachineStatus = MachineStatus.Offline,
-                SentDataDateTime = new DateTime(2021 - 10 - 31)
+                SentDataDateTime = DateTime.Now
             });
 
             modelBuilder.Entity<Machine>().HasData(new Machine
@@ -80,8 +80,9 @@ namespace MachineCommandCenter.Shared.Models
                 MachineId = Guid.NewGuid(),
                 Name = "Backhoe Loader",
                 MachineStatus = MachineStatus.Online,
-                SentDataDateTime = new DateTime(2021 - 11 - 01)
+                SentDataDateTime = DateTime.Now
             });
+            
         }
 
         private static Guid GuidFromString(string input)

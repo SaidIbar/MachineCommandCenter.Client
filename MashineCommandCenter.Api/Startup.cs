@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace MashineCommandCenter.Api
         }
 
         public IConfiguration Configuration { get; }
+        //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,6 +35,21 @@ namespace MashineCommandCenter.Api
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IMachineRepository, MachineRepository>();
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: MyAllowSpecificOrigins,
+            //                      builder =>
+            //                      {
+            //                          builder.WithOrigins("https://localhost:44321/",
+            //                                              "http://localhost:44322/").AllowAnyHeader().AllowAnyMethod().WithHeaders(HeaderNames.ContentType);
+            //                      });
+            //});
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
+           
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -53,8 +71,12 @@ namespace MashineCommandCenter.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
 
             app.UseAuthorization();
+            
+
+            app.UseCors("Open");
 
             app.UseEndpoints(endpoints =>
             {

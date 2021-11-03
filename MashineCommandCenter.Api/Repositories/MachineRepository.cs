@@ -17,7 +17,8 @@ namespace MachineCommandCenter.Api.Repositories
 
         public IEnumerable<Machine> GetAllMachines()
         {
-            return _appDbContext.Machines;
+            var allMachines = _appDbContext.Machines; ;
+            return allMachines;
         }
 
         public Machine GetMachineById(Guid machineId)

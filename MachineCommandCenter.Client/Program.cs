@@ -19,8 +19,8 @@ namespace MachineCommandCenter.Client
             builder.RootComponents.Add<App>("#app");
 
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            //builder.Services.AddHttpClient<IMachineDataService, MachineDataService>(client => client.BaseAddress = new Uri("https://localhost:44321/"));
-            builder.Services.AddHttpClient<IMachineDataService, MachineDataService>(client => client.BaseAddress = new Uri("https://localhost:44321/")); 
+           // builder.Services.AddHttpClient<IMachineDataService, MachineDataService>(client => client.BaseAddress = new Uri("http://localhost:44321/"));
+            builder.Services.AddHttpClient<IMachineDataService, MachineDataService>(client => client.BaseAddress = new Uri("https://localhost:44393/")); 
             
             await builder.Build().RunAsync();
         }

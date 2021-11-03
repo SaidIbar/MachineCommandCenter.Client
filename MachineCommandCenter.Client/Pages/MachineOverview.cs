@@ -13,11 +13,46 @@ namespace MachineCommandCenter.Client.Pages
         [Inject]
         public IMachineDataService MachineDataService { get; set; }
 
+        private string IdString;
+        public Machine Machine { get; set; } = new Machine();
+        [Parameter]
+        public string MachineId { get; set; }
         public IEnumerable<Machine> Machines { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
+            //Guid.TryParse(MachineId, out var machineId);
             Machines = (await MachineDataService.GetAllMachines()).ToList();
+           // await UpdateStatusAsync();
         }
+
+        
+               
+        protected override async Task OnParametersSetAsync()
+        {
+            IdString = MachineId?.ToString() ?? "";
+            //Id = null;
+            if(IdString != "")
+            {
+                var machineGuidID = Guid.Parse(MachineId);
+                Machine = await MachineDataService.GetMachineDetails(machineGuidID);
+                 if(Machine.MachineStatus == 0)
+                    {
+                    Machine.MachineStatus = (MachineStatus)1;
+                 }
+                 else
+                 {
+                     Machine.MachineStatus = 0;
+                 }
+                Machine.SentDataDateTime = DateTime.Now;
+                await MachineDataService.UpdateMachine(Machine);
+                Machines = (await MachineDataService.GetAllMachines()).ToList();
+                //MethodToTriggerUrl();
+            }
+
+        }
+
+
+
     }
 }

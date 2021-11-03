@@ -41,59 +41,59 @@ namespace MachineCommandCenter.Data.Migrations
                     b.HasData(
                         new
                         {
-                            MachineId = new Guid("d3ef0437-c6bf-4654-bfea-c6883d7e11d6"),
+                            MachineId = new Guid("bb67207e-af12-4a46-a419-e2e9b9805ed6"),
                             MachineStatus = 1,
                             Name = "Telehandler",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2009)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 944, DateTimeKind.Local).AddTicks(8118)
                         },
                         new
                         {
-                            MachineId = new Guid("a480ba91-7618-4d95-92e1-751a08560bf3"),
+                            MachineId = new Guid("2535cc65-41e2-4eb7-a505-63ad71c6e73b"),
                             MachineStatus = 0,
                             Name = "Single Man Lift",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2009)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2329)
                         },
                         new
                         {
-                            MachineId = new Guid("9f552147-0b76-4666-82a8-79008e09e1ba"),
+                            MachineId = new Guid("aad1eb46-64f1-4c7f-9b7d-cbdc18e24b2f"),
                             MachineStatus = 1,
                             Name = "Wheel Tractor-Scraper",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2009)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2554)
                         },
                         new
                         {
-                            MachineId = new Guid("6500ff82-31fd-405d-a06b-41bf25070d68"),
+                            MachineId = new Guid("f88bd76f-26d5-45ac-88a6-80d2765ce39c"),
                             MachineStatus = 0,
                             Name = "Skid Steer Loader",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2009)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2611)
                         },
                         new
                         {
-                            MachineId = new Guid("2ad53da7-d8ca-4b89-9464-1904e0e461de"),
+                            MachineId = new Guid("e6d0152b-d055-4dc8-8980-ccc38a3337b3"),
                             MachineStatus = 0,
                             Name = "Scissor Lift",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2009)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2659)
                         },
                         new
                         {
-                            MachineId = new Guid("08c04174-171e-4c19-a615-4053b688464c"),
+                            MachineId = new Guid("bd5ba167-44be-46f7-b884-573d12240605"),
                             MachineStatus = 1,
                             Name = "Forklift",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1981)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2720)
                         },
                         new
                         {
-                            MachineId = new Guid("a570092a-6e93-4236-8bc9-631da397abb4"),
+                            MachineId = new Guid("34fd4f7e-9f3c-4e8a-848a-2ca4b6b2aaf6"),
                             MachineStatus = 1,
                             Name = "Bulldozer",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1980)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2781)
                         },
                         new
                         {
-                            MachineId = new Guid("8fe7dba0-354a-40f9-9fd4-4f4079a814fc"),
+                            MachineId = new Guid("b8b8fa7d-adfe-4dd7-9846-7a313a1ba4ca"),
                             MachineStatus = 0,
                             Name = "Backhoe Loader",
-                            SentDataDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2009)
+                            SentDataDateTime = new DateTime(2021, 11, 2, 17, 2, 12, 949, DateTimeKind.Local).AddTicks(2832)
                         });
                 });
 #pragma warning restore 612, 618

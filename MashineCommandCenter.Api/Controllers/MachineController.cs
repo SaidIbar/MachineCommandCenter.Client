@@ -3,11 +3,11 @@ using MachineCommandCenter.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace BethanysPieShopHRM.Api.Controllers
+namespace MashineCommandCenter.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MachineController : Controller
+    public class MachineController : ControllerBase
     {
         private readonly IMachineRepository _machineRepository;
 
@@ -16,20 +16,21 @@ namespace BethanysPieShopHRM.Api.Controllers
             _machineRepository = machineRepository;
         }
 
-        [HttpGet]
+        [HttpGet()]
         public IActionResult GetAllMachines()
         {
-            return Ok(_machineRepository.GetAllMachines());
+            var allMachines = _machineRepository.GetAllMachines();
+            return Ok(allMachines);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetEmployeeById(Guid machineId)
+        [HttpGet("{machineId}")]
+        public IActionResult GetMachineById(Guid machineId)
         {
             return Ok(_machineRepository.GetMachineById(machineId));
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee([FromBody] Machine machine)
+        public IActionResult CreateMachine([FromBody] Machine machine)
         {
             if (machine == null)
                 return BadRequest();
@@ -48,14 +49,14 @@ namespace BethanysPieShopHRM.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateEmployee([FromBody] Machine machine)
+        public IActionResult UpdateMachine([FromBody] Machine machine)
         {
             if (machine == null)
                 return BadRequest();
 
             if (machine.Name == string.Empty)
             {
-                ModelState.AddModelError("Name/FirstName", "The name or first name shouldn't be empty");
+                ModelState.AddModelError("Name", "The name shouldn't be empty");
             }
 
             if (!ModelState.IsValid)
@@ -71,8 +72,8 @@ namespace BethanysPieShopHRM.Api.Controllers
             return NoContent(); //success
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteEmployee(Guid machineId)
+        [HttpDelete("{machineId}")]
+        public IActionResult DeleteMachine(Guid machineId)
         {
             if (machineId != Guid.Empty)
                    return BadRequest();
