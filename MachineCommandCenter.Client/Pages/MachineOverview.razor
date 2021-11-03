@@ -1,41 +1,60 @@
 ﻿@page "/machineoverview"
 @page "/machineoverview/{MachineId}"
 @inject NavigationManager NavigationManager
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
+    </head>
 
-<h1 class="page-title">All machines</h1>
+    <h1 class="page-title">All machines</h1>
 
-@if (Machines == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Machine Name</th>
-                <th>Status</th>
-                <th>Status change date</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var machine in Machines)
-            {
+    @if (Machines == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@machine.Name</td>
-                    <td>@machine.MachineStatus</td>
-                    <td>@machine.SentDataDateTime</td>
-                    <td>
-                        <a href="@($"machineoverview/{machine.MachineId}")" class="btn btn-primary table-btn">
-                            <i class="fas fa-info-circle"></i>
-                        </a>
-
-                    </td>
+                    <th>Machine Name</th>
+                    <th>Status</th>
+                    <th>Status change date</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var machine in Machines)
+                {
+                    <tr>
+                        <td>@machine.Name</td>
+                        <td>@machine.MachineStatus</td>
+                        <td>@machine.SentDataDateTime</td>
+                        <td>
 
+                            @if (@machine.MachineStatus.ToString() == ("Online"))
+                            {
+                                <a class="btn btn-secondary" href="@($"machineoverview/{machine.MachineId}")" role="button">Set Off-line</a>
+                                <i class="bi bi-toggle-on" style="font-size:24px"></i>
+
+                            }
+                            else
+                            {
+                                <a class="btn btn-secondary" href="@($"machineoverview/{machine.MachineId}")" role="button">Set On-line</a>
+                                <i class="bi bi-toggle-off" style="font-size:24px"></i>
+
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+   
