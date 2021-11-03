@@ -46,7 +46,9 @@ namespace MachineCommandCenter.Client.Pages
                  }
                 Machine.SentDataDateTime = DateTime.Now;
                 await MachineDataService.UpdateMachine(Machine);
+                MachineId = null;
                 Machines = (await MachineDataService.GetAllMachines()).ToList();
+                NavigationManager.NavigateTo("machineoverview");
                 //MethodToTriggerUrl();
             }
 

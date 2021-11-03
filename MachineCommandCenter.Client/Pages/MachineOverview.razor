@@ -1,5 +1,7 @@
 ﻿@page "/machineoverview"
 @page "/machineoverview/{MachineId}"
+@inject NavigationManager NavigationManager
+
 
 <h1 class="page-title">All machines</h1>
 
@@ -29,7 +31,7 @@ else
                         <a href="@($"machineoverview/{machine.MachineId}")" class="btn btn-primary table-btn">
                             <i class="fas fa-info-circle"></i>
                         </a>
-                       
+
                     </td>
                 </tr>
             }
