@@ -44,10 +44,7 @@ namespace MachineCommandCenter.Client.Pages
         {
             IdString = MachineId?.ToString() ?? "";
             IdString2 = Delete;
-           Console.WriteLine(IdString2);
-            Console.WriteLine(Delete);
-
-            //Id = null;
+           
             if (IdString != "" && IdString2 == null)
             {
                 var machineGuidID = Guid.Parse(MachineId);
@@ -60,7 +57,9 @@ namespace MachineCommandCenter.Client.Pages
                  {
                      Machine.MachineStatus = 0;
                  }
-                
+                Machine.SentDataDateTime = DateTime.Now;
+
+
                 await MachineDataService.UpdateMachine(Machine);
                 Machines = (await MachineDataService.GetAllMachines()).ToList();
                 NavigationManager.NavigateTo("machineoverview");
