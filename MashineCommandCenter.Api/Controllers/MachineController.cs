@@ -75,7 +75,7 @@ namespace MashineCommandCenter.Api.Controllers
         [HttpDelete("{machineId}")]
         public IActionResult DeleteMachine(Guid machineId)
         {
-            if (machineId != Guid.Empty)
+            if (machineId == Guid.Empty)
                    return BadRequest();
 
                 var machineToDelete = _machineRepository.GetMachineById(machineId);

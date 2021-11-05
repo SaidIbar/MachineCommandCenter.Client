@@ -14,6 +14,11 @@ namespace MachineCommandCenter.Client.Pages
         public IMachineDataService MachineDataService { get; set; }
 
         private string IdString;
+        private string IdString2;
+
+        [Parameter]
+        public string Delete { get; set; }
+        
         public Machine Machine { get; set; } = new Machine();
         public string Name = string.Empty;
         //public MachineStatus machineStatus { get; } = new MachineStatus();
@@ -38,9 +43,12 @@ namespace MachineCommandCenter.Client.Pages
         protected override async Task OnParametersSetAsync()
         {
             IdString = MachineId?.ToString() ?? "";
-            
+            IdString2 = Delete;
+           Console.WriteLine(IdString2);
+            Console.WriteLine(Delete);
+
             //Id = null;
-            if (IdString != "")
+            if (IdString != "" && IdString2 == null)
             {
                 var machineGuidID = Guid.Parse(MachineId);
                 Machine = await MachineDataService.GetMachineDetails(machineGuidID);
@@ -58,7 +66,7 @@ namespace MachineCommandCenter.Client.Pages
                 NavigationManager.NavigateTo("machineoverview");
                 //MethodToTriggerUrl();
             }
-            else
+            else if (IdString == "" && IdString2 == null)
             {
                 Machine = new Machine
                 {
@@ -66,6 +74,13 @@ namespace MachineCommandCenter.Client.Pages
                     SentDataDateTime = DateTime.Now,
                     //MachineStatus = 0
                 };
+            }
+            else //if (IdString2.ToString() == "true")
+            {
+                var machineGuidID = Guid.Parse(MachineId);
+                await MachineDataService.DeleteMachine(machineGuidID);
+                Machines = (await MachineDataService.GetAllMachines()).ToList();
+                NavigationManager.NavigateTo("machineoverview");
             }
 
 

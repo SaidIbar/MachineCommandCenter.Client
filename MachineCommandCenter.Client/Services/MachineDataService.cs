@@ -34,9 +34,11 @@ namespace MachineCommandCenter.Client.Services
             return null;
         }
 
-        public Task DeleteMachine(Guid machineId)
+        public async Task DeleteMachine(Guid machineId)
         {
-            throw new NotImplementedException();
+            //var machine = await JsonSerializer.DeserializeAsync<Machine>
+                 await _httpClient.DeleteAsync($"api/Machine/{machineId}");
+            //return machine;
         }
 
         public async Task<IEnumerable<Machine>> GetAllMachines()

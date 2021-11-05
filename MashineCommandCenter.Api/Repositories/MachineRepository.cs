@@ -59,6 +59,7 @@ namespace MachineCommandCenter.Api.Repositories
 
             _appDbContext.Machines.Remove(foundMachine);
             _appDbContext.SaveChanges();
+
         }
 
         
