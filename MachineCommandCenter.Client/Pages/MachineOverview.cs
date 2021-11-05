@@ -15,12 +15,19 @@ namespace MachineCommandCenter.Client.Pages
 
         private string IdString;
         public Machine Machine { get; set; } = new Machine();
+        public string Name = string.Empty;
+        //public MachineStatus machineStatus { get; } = new MachineStatus();
+        public List<MachineStatus> MachineStatuses { get; } = new List<MachineStatus>();
+        //protected string MachineStatus = string.Empty;
+
         [Parameter]
         public string MachineId { get; set; }
         public IEnumerable<Machine> Machines { get; set; }
-
+        protected bool Saved;
         protected override async Task OnInitializedAsync()
         {
+            
+
             //Guid.TryParse(MachineId, out var machineId);
             Machines = (await MachineDataService.GetAllMachines()).ToList();
            // await UpdateStatusAsync();
@@ -31,8 +38,9 @@ namespace MachineCommandCenter.Client.Pages
         protected override async Task OnParametersSetAsync()
         {
             IdString = MachineId?.ToString() ?? "";
+            
             //Id = null;
-            if(IdString != "")
+            if (IdString != "")
             {
                 var machineGuidID = Guid.Parse(MachineId);
                 Machine = await MachineDataService.GetMachineDetails(machineGuidID);
@@ -44,16 +52,54 @@ namespace MachineCommandCenter.Client.Pages
                  {
                      Machine.MachineStatus = 0;
                  }
-                Machine.SentDataDateTime = DateTime.Now;
+                
                 await MachineDataService.UpdateMachine(Machine);
-                MachineId = null;
                 Machines = (await MachineDataService.GetAllMachines()).ToList();
                 NavigationManager.NavigateTo("machineoverview");
                 //MethodToTriggerUrl();
             }
+            else
+            {
+                Machine = new Machine
+                {
+                    Name = "",
+                    SentDataDateTime = DateTime.Now,
+                    //MachineStatus = 0
+                };
+            }
+
 
         }
 
+        protected async Task HandleValidSubmit()
+        {
+          
+            Machine.SentDataDateTime = DateTime.Now;
+            IdString = MachineId?.ToString() ?? "";
+            //Id = null;
+            if(IdString == "")
+            {
+                Machine.MachineId = Guid.NewGuid();
+                if (Machine.MachineStatus.Equals(0))
+                {
+                    Machine.MachineStatus = 0;
+                }
+                else
+                {
+                    Machine.MachineStatus = (MachineStatus)1;
+                }
+                var addedMachine = await MachineDataService.AddMachine(Machine);
+                
+                Machines = (await MachineDataService.GetAllMachines()).ToList();
+                NavigationManager.NavigateTo("machineoverview");
+            }
+            else
+            {
+               
+                NavigationManager.NavigateTo("machineoverview");
+            }
+           
+        }
 
 
     }

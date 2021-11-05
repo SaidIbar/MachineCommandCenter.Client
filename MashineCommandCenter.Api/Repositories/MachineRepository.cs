@@ -17,7 +17,7 @@ namespace MachineCommandCenter.Api.Repositories
 
         public IEnumerable<Machine> GetAllMachines()
         {
-            var allMachines = _appDbContext.Machines; ;
+            var allMachines = _appDbContext.Machines.OrderByDescending(s => s.SentDataDateTime);
             return allMachines;
         }
 
