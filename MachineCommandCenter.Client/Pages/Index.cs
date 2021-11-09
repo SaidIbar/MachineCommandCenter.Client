@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MachineCommandCenter.Client.Pages
 {
-    public partial class MachineOverview
+    public partial class Index
     {
         [Inject]
         public IMachineDataService MachineDataService { get; set; }
@@ -18,7 +18,7 @@ namespace MachineCommandCenter.Client.Pages
 
         [Parameter]
         public string Delete { get; set; }
-        
+
         public Machine Machine { get; set; } = new Machine();
         public string Name = string.Empty;
         //public MachineStatus machineStatus { get; } = new MachineStatus();
@@ -31,38 +31,38 @@ namespace MachineCommandCenter.Client.Pages
         protected bool Saved;
         protected override async Task OnInitializedAsync()
         {
-            
+
 
             //Guid.TryParse(MachineId, out var machineId);
             Machines = (await MachineDataService.GetAllMachines()).ToList();
-           // await UpdateStatusAsync();
+            // await UpdateStatusAsync();
         }
 
-        
-               
+
+
         protected override async Task OnParametersSetAsync()
         {
             IdString = MachineId?.ToString() ?? "";
             IdString2 = Delete;
-           
+
             if (IdString != "" && IdString2 == null)
             {
                 var machineGuidID = Guid.Parse(MachineId);
                 Machine = await MachineDataService.GetMachineDetails(machineGuidID);
-                 if(Machine.MachineStatus == 0)
-                    {
+                if (Machine.MachineStatus == 0)
+                {
                     Machine.MachineStatus = (MachineStatus)1;
-                 }
-                 else
-                 {
-                     Machine.MachineStatus = 0;
-                 }
+                }
+                else
+                {
+                    Machine.MachineStatus = 0;
+                }
                 Machine.SentDataDateTime = DateTime.Now;
 
 
                 await MachineDataService.UpdateMachine(Machine);
                 Machines = (await MachineDataService.GetAllMachines()).ToList();
-                NavigationManager.NavigateTo("machineoverview");
+                NavigationManager.NavigateTo("/");
                 //MethodToTriggerUrl();
             }
             else if (IdString == "" && IdString2 == null)
@@ -79,7 +79,7 @@ namespace MachineCommandCenter.Client.Pages
                 var machineGuidID = Guid.Parse(MachineId);
                 await MachineDataService.DeleteMachine(machineGuidID);
                 Machines = (await MachineDataService.GetAllMachines()).ToList();
-                NavigationManager.NavigateTo("machineoverview");
+                NavigationManager.NavigateTo("/");
             }
 
 
@@ -87,11 +87,11 @@ namespace MachineCommandCenter.Client.Pages
 
         protected async Task HandleValidSubmit()
         {
-          
+
             Machine.SentDataDateTime = DateTime.Now;
             IdString = MachineId?.ToString() ?? "";
             //Id = null;
-            if(IdString == "")
+            if (IdString == "")
             {
                 Machine.MachineId = Guid.NewGuid();
                 if (Machine.MachineStatus.Equals(0))
@@ -103,16 +103,16 @@ namespace MachineCommandCenter.Client.Pages
                     Machine.MachineStatus = (MachineStatus)1;
                 }
                 var addedMachine = await MachineDataService.AddMachine(Machine);
-                
+
                 Machines = (await MachineDataService.GetAllMachines()).ToList();
-                NavigationManager.NavigateTo("machineoverview");
+                NavigationManager.NavigateTo("/");
             }
             else
             {
-               
-                NavigationManager.NavigateTo("machineoverview");
+
+                NavigationManager.NavigateTo("/");
             }
-           
+
         }
 
 
