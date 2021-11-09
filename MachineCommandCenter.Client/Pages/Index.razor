@@ -40,7 +40,7 @@ else
             </div>
         </div>
     </EditForm>
-    <table class="table table-striped col-7" style="padding-top:20px">
+    <table class="table  col-7" style="padding-top:20px">
         <thead>
             <tr>
                 <th>Machine Name</th>
@@ -60,17 +60,17 @@ else
                     <td>
                         @if (@machine.MachineStatus.ToString() == ("Online"))
                         {
-                            <a class="btn btn-secondary" href="@($"/{machine.MachineId}")" role="button">Set Off-line</a>
-
+                            <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}")" role="button" ><i class="bi bi-toggle-on" style="font-size:24px; "></i></a>
+                            
                         }
                         else
                         {
-                            <a class="btn btn-secondary" href="@($"/{machine.MachineId}")" role="button">Set On-line</a>
-
+                            <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}")" role="button"><i class="bi bi-toggle-off" style="font-size:24px"></i></a>
+                            
                         }
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="@($"/{machine.MachineId}/true")" role="button">Delete</a>
+                        <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}/true")" role="button"><i class="bi bi-trash alert-danger bg-light" style="font-size:24px"></i></a>
                     </td>
                 </tr>
             }
