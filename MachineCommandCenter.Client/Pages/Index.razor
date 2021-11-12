@@ -11,8 +11,8 @@
 
 </head>
 
-<h1 class="page-title">Our machines</h1>
 
+<h1 class="display-4">ToDo List</h1>
 @if (Machines == null)
 {
 <app>
@@ -30,7 +30,7 @@ else
     <EditForm Model="@Machine" OnValidSubmit="@HandleValidSubmit">
         <div class="form-row align-items-center" style="padding-bottom:20px">
             <div class="col-md-4">
-                <InputText id="Name" class="form-control col-md-12" @bind-Value="@Machine.Name" placeholder="Enter machine name" aria-describedby="button-addon2"></InputText>
+                <InputText id="Name" class="form-control col-md-12" @bind-Value="@Machine.Name" placeholder="Enter task" aria-describedby="button-addon2"></InputText>
             </div>
             @*<div class="col-md-2">
                     <InputSelect @bind-Value="@Machine.MachineStatus">
@@ -51,8 +51,8 @@ else
     <table class="table  col-7" style="padding-top:20px">
         <thead>
             <tr>
-                <th>Machine Name</th>
-                <th>Status</th>
+                <th>Task Name</th>
+                @*<th>Status</th>*@
                 <th>Status change date</th>
                 <th></th>
                 <th></th>
@@ -61,26 +61,34 @@ else
         <tbody>
             @foreach (var machine in Machines)
             {
-                <tr>
+            <tr>
+                @if (@machine.MachineStatus.ToString() == ("Online"))
+                {
                     <td>@machine.Name</td>
-                    <td>@machine.MachineStatus</td>
-                    <td>@machine.SentDataDateTime</td>
-                    <td>
-                        @if (@machine.MachineStatus.ToString() == ("Online"))
-                        {
-                            <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}")" role="button" ><i class="bi bi-toggle-on" style="font-size:24px; "></i></a>
-                            
-                        }
-                        else
-                        {
-                            <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}")" role="button"><i class="bi bi-toggle-off" style="font-size:24px"></i></a>
-                            
-                        }
-                    </td>
-                    <td>
-                        <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}/true")" role="button"><i class="bi bi-trash alert-danger bg-light" style="font-size:24px"></i></a>
-                    </td>
-                </tr>
+                }
+                else
+                {
+                    <td style="text-decoration:line-through">@machine.Name</td>
+                }
+
+                @*<td>@machine.MachineStatus</td>*@
+                <td>@machine.SentDataDateTime.ToLongDateString()</td>
+                <td>
+                    @if (@machine.MachineStatus.ToString() == ("Online"))
+                    {
+                        <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}")" role="button" data-toggle="tooltip" data-placement="top" title="Set to done"><i class="bi bi-toggle-on" style="font-size:24px; "></i></a>
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}")" role="button" data-toggle="tooltip" data-placement="top" title="Set to undone"><i class="bi bi-toggle-off" style="font-size:24px"></i></a>
+
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-light bg-light" href="@($"/{machine.MachineId}/true")" role="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="bi bi-trash alert-danger bg-light" style="font-size:24px"></i></a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
