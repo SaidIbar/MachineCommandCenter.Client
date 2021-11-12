@@ -29,26 +29,32 @@ else
 {
     <EditForm Model="@Machine" OnValidSubmit="@HandleValidSubmit">
         <div class="form-row align-items-center" style="padding-bottom:20px">
-            <div class="col-md-4">
+            @*<div class="col-md-4">
                 <InputText id="Name" class="form-control col-md-12" @bind-Value="@Machine.Name" placeholder="Enter task" aria-describedby="button-addon2"></InputText>
+            </div>*@
+            <div class="input-group mb-6 col-md-6">
+                <InputText class="form-control" @bind-Value="@Machine.Name" placeholder="Enter task" aria-label="Recipient's username" aria-describedby="basic-addon2"></InputText>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Save</button>
+                </div>
             </div>
             @*<div class="col-md-2">
-                    <InputSelect @bind-Value="@Machine.MachineStatus">
-                        @foreach (var status in MachineStatuses)
-                            {
-                            <option value="1">Off-line</option>
-                            <option value="0">Online</option>
-                            }
-                    </InputSelect>
-                </div>*@
-            <div class="col-md-2">
+            <InputSelect @bind-Value="@Machine.MachineStatus">
+                @foreach (var status in MachineStatuses)
+                    {
+                    <option value="1">Off-line</option>
+                    <option value="0">Online</option>
+                    }
+            </InputSelect>
+        </div>*@
+            @*<div class="col-md-2">
                 <input type="submit" value="Save" id="button-addon2" class="btn btn-secondary mb-auto" />
-            </div>
+            </div>*@
             <div class="col-md-4">
             </div>
         </div>
     </EditForm>
-    <table class="table  col-7" style="padding-top:20px">
+    <table class="table  col-md-6" style="padding-top:20px">
         <thead>
             <tr>
                 <th>Task Name</th>
